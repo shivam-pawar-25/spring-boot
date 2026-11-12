@@ -1,21 +1,16 @@
 package sprint.example.crud_application.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import sprint.example.crud_application.entity.Student;
 
-@Component
-public class StudentRepository {
+import java.net.InterfaceAddress;
 
-    public Student saveStudent (Student studentReq ){
-        System.out.println("Repository");
-        Student s = new Student();
-        s.setName(studentReq.getName());
-        s.setAge(studentReq.getAge());
-        s.setEmail(studentReq.getEmail());
-        s.setSubject(studentReq.getSubject());
-        s.setRollNO(studentReq.getRollNO());
-        return s ;
-    }
+@Repository
+public interface StudentRepository extends JpaRepository<Student, Long> {
+
+
 
 
 
@@ -23,3 +18,13 @@ public class StudentRepository {
 }
 
 
+/*jpa (jakarta persistance api )
+    provide way to interact with DB layer
+    Methods provided
+        save() : use to insert the row in Table
+        findAll() : return all rows
+        find() : return single or replace select query
+        deleteById() : delete record
+        save() : to update
+        exisById() : is record present
+ */
