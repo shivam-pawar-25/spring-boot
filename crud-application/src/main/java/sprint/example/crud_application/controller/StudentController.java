@@ -1,11 +1,9 @@
 package sprint.example.crud_application.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sprint.example.crud_application.entity.Student;
-import sprint.example.crud_application.repository.StudentRepository;
 import sprint.example.crud_application.service.StudentService;
 
 import java.util.List;
@@ -53,12 +51,12 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
-    @DeleteMapping("{id")
-    public ResponseEntity<Student> deleteStudent(@PathVariable Long id ) {
-        Student student = studentService.deleteStudent(id );
-        if(student == null){
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id ) {
+         Boolean isDeleted = studentService.deleteStudent(id);
+        if(!isDeleted){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return ResponseEntity.status(HttpStatus.OK).body(student);
+        return ResponseEntity.status(HttpStatus.OK).body("Record deleted");
     }
 }

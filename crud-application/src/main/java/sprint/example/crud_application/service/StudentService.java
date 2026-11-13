@@ -52,7 +52,13 @@ public class StudentService {
 
     }
 
-    public Student deleteStudent(Long id) {
-        
+    public Boolean deleteStudent(Long id) {
+        Boolean isStudent = studentRepository.existsById(id);
+        if (!isStudent) {
+            return false;
+        }
+        studentRepository.deleteById(id);
+        return true;
     }
+
 }
