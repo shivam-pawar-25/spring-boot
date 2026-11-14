@@ -1,5 +1,6 @@
 package sprint.example.crud_application.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponseDto> create(@RequestBody StudentRequestDto student) {
+    public ResponseEntity<StudentResponseDto> create(@Valid @RequestBody StudentRequestDto student) {
         StudentResponseDto createdStudent = studentService.createStudent(student);
         return new ResponseEntity<>(createdStudent,HttpStatus.CREATED);
     }

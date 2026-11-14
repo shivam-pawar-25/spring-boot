@@ -1,13 +1,32 @@
 package sprint.example.crud_application.dto;
 
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 public class StudentRequestDto {
 
+
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @Min(value = 18 , message = "age is invalid")
     private int age;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotEmpty(message = "RollNo is required")
+    @Min(1)
+    @Min(100)
     private int rollno;
+
+    @NotBlank(message = "Subject is Rreuired")
     private String subject;
-    private String message;
+
 
     public String getName() {
         return name;
@@ -49,11 +68,4 @@ public class StudentRequestDto {
         this.subject = subject;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
