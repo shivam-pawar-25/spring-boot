@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import sprint.example.crud_application.dto.StudentRequestDto;
 import sprint.example.crud_application.dto.StudentResponseDto;
 import sprint.example.crud_application.entity.Student;
+import sprint.example.crud_application.exeption.ResourceNotFound;
 import sprint.example.crud_application.repository.StudentRepository;
 
 import java.time.LocalDateTime;
@@ -30,11 +31,9 @@ public class StudentService {
 
 
     public Student getStudent(Long id) {
-        Optional<Student> student = studentRepository.findById(id);
-        if(student.isPresent()){
-            return student.get();
-        }
-        return null;
+        Student student = studentRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Student with id " + id + " not found"));
+
+        return student;
     }
 
     public List<Student> getAllStudents(){

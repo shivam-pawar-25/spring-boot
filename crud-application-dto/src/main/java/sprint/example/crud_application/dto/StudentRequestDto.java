@@ -21,7 +21,6 @@ public class StudentRequestDto {
 
     @NotEmpty(message = "RollNo is required")
     @Min(1)
-    @Min(100)
     private int rollno;
 
     @NotBlank(message = "Subject is Rreuired")
